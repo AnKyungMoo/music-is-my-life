@@ -16,3 +16,4 @@ rootProject.name = "Music-is-my-life"
 include ':app'
 include ':presenter'
 include ':domain'
+include ':data'
