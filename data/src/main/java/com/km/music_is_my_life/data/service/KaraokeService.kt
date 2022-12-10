@@ -13,4 +13,10 @@ internal interface KaraokeService {
         @Path(value = "title") title: String,
         @Path(value = "brand") brand: String,
     ): List<MusicInfoResponseBody>
+
+    @GET("singer/{singer}/{brand}.json")
+    suspend fun getMusicsBySinger(
+        @Path(value = "singer") singer: String,
+        @Path(value = "brand") brand: String,
+    ): List<MusicInfoResponseBody>
 }
