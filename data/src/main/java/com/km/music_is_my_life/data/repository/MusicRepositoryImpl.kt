@@ -5,7 +5,7 @@ import com.km.music_is_my_life.domain.model.Music
 import com.km.music_is_my_life.domain.repository.MusicRepository
 import javax.inject.Inject
 
-class MusicRepositoryImpl @Inject constructor(
+internal class MusicRepositoryImpl @Inject constructor(
     private val service: KaraokeService,
 ) : MusicRepository {
     override suspend fun getRecentMusicsOfBrand(brand: String): List<Music> {

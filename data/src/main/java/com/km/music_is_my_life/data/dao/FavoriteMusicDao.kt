@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.km.music_is_my_life.data.entity.FavoriteMusicEntity
 
 @Dao
-interface FavoriteMusicDao {
+internal interface FavoriteMusicDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMusic(favoriteMusicEntity: FavoriteMusicEntity): Long
 
