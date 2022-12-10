@@ -13,4 +13,10 @@ internal class MusicRepositoryImpl @Inject constructor(
             it.toDomainModel()
         }
     }
+
+    override suspend fun getMusicsByTitle(title: String, brand: String): List<Music> {
+        return service.getMusicsByTitle(title = title, brand = brand).map {
+            it.toDomainModel()
+        }
+    }
 }

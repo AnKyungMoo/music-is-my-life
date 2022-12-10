@@ -3,7 +3,7 @@ package com.km.music_is_my_life.data.dto.response
 import com.google.gson.annotations.SerializedName
 import com.km.music_is_my_life.domain.model.Music
 
-internal data class RecentMusicResponseBody(
+internal data class MusicInfoResponseBody(
     @SerializedName("brand") val brand: String,
     @SerializedName("no") val no: String,
     @SerializedName("title") val title: String,
