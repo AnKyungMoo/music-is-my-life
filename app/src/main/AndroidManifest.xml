@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Musicismylife"
         tools:targetApi="31">
         <activity
-            android:name=".presenter.ui.TestActivity"
+            android:name=".presenter.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
