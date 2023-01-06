@@ -1,5 +1,6 @@
 package com.km.music_is_my_life.presenter.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.ActivityMainBinding
 import com.km.music_is_my_life.presenter.ui.main.adapter.MainTabAdapter
+import com.km.music_is_my_life.presenter.ui.search.SearchSongActivity
 
 class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,6 +32,9 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun initViews() {
+        binding.btnSearchSong.setOnClickListener {
+            startActivity(Intent(this, SearchSongActivity::class.java))
+        }
         binding.viewPager.adapter = MainTabAdapter(this)
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->

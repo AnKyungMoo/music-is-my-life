@@ -16,7 +16,7 @@
                 android:background="@color/BG01">
 
                 <RelativeLayout
-                    android:id="@+id/layout_search"
+                    android:id="@+id/btn_search_song"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_gravity="bottom"
