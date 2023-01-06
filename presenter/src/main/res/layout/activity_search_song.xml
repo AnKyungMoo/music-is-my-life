@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout_top"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:background="@color/BG01"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/layout_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/search_layout_background"
+            app:layout_constraintBottom_toBottomOf="@id/layout_top"
+            app:layout_constraintEnd_toEndOf="@id/layout_top"
+            app:layout_constraintStart_toStartOf="@id/layout_top"
+            app:layout_constraintTop_toTopOf="@id/layout_top" />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/layout_search"
+            app:layout_constraintStart_toStartOf="@id/layout_search"
+            app:layout_constraintTop_toTopOf="@id/layout_search" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="9dp"
+            android:background="@null"
+            android:inputType="text"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@id/layout_search"
+            app:layout_constraintEnd_toStartOf="@id/btn_clear_text"
+            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintTop_toTopOf="@id/layout_search" />
+
+        <ImageView
+            android:id="@+id/btn_clear_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_clear_text"
+            app:layout_constraintBottom_toBottomOf="@id/layout_search"
+            app:layout_constraintEnd_toEndOf="@id/layout_search"
+            app:layout_constraintTop_toTopOf="@id/layout_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
