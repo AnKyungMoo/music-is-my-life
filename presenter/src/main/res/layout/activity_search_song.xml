@@ -59,5 +59,15 @@
             app:layout_constraintEnd_toEndOf="@id/layout_search"
             app:layout_constraintTop_toTopOf="@id/layout_search" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_song_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_top" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
