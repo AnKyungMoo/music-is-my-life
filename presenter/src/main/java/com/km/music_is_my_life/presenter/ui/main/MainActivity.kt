@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.km.music_is_my_life.presenter.R
@@ -24,6 +25,8 @@ class MainActivity: AppCompatActivity() {
 
         initToolbar()
         initViews()
+        /* TODO: 사용처에 맞춰서 위치를 변경해야함 */
+        initBottomSheet()
     }
 
     private fun initToolbar() {
@@ -40,6 +43,12 @@ class MainActivity: AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+    }
+
+    private fun initBottomSheet() {
+        val bottomSheet = BottomSheetDialog(this)
+        bottomSheet.setContentView(layoutInflater.inflate(R.layout.song_detail_bottom_sheet, null))
+        bottomSheet.show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
