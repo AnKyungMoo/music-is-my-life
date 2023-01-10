@@ -2,21 +2,13 @@ package com.km.music_is_my_life.presenter.ui.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.km.music_is_my_life.domain.model.Music
 import com.km.music_is_my_life.presenter.databinding.ItemAddSongBinding
+import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
-class SearchSongAdapter : RecyclerView.Adapter<SearchSongViewHolder>() {
-    /* TODO: 실제 데이터와 연결해야한다. */
-    private val songs: List<Music> = listOf(
-        Music("", "1234", "사건의", "윤희", "", "", ""),
-        Music("", "12", "사건의 지편성", "성시경", "", "", ""),
-        Music("", "12345", "사건의 지평선", "윤하", "", "", ""),
-        Music("", "1", "사건", "목소리에", "", "", ""),
-        Music("", "123", "굿", "돌아보면", "", "", ""),
-    )
-
+class SearchSongAdapter : ListAdapter<SongUiModel, SearchSongViewHolder>(SearchSongViewHolder.diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchSongViewHolder {
         return SearchSongViewHolder(
             ItemAddSongBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,16 +16,25 @@ class SearchSongAdapter : RecyclerView.Adapter<SearchSongViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SearchSongViewHolder, position: Int) {
-        holder.onBind(songs[position])
+        holder.onBind(currentList[position])
     }
-
-    override fun getItemCount(): Int = songs.size
 }
 
 class SearchSongViewHolder(private val binding: ItemAddSongBinding) : ViewHolder(binding.root) {
-    fun onBind(song: Music) {
-        binding.tvSongNumber.text = song.no
+    fun onBind(song: SongUiModel) {
+        binding.tvSongNumber.text = song.number
         binding.tvSongName.text = song.title
         binding.tvSinger.text = song.singer
+    }
+
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<SongUiModel>() {
+            override fun areItemsTheSame(oldItem: SongUiModel, newItem: SongUiModel): Boolean {
+                return oldItem.number == newItem.number
+            }
+            override fun areContentsTheSame(oldItem: SongUiModel, newItem: SongUiModel): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

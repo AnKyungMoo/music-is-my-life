@@ -7,7 +7,7 @@ import javax.inject.Inject
 class SearchForMusicUseCase @Inject constructor(
     private val musicRepository: MusicRepository,
 ) {
-    suspend operator fun invoke(searchWord: String, brand: String): List<Music> {
+    suspend operator fun invoke(searchWord: String, brand: String = "TJ"): List<Music> {
         val result = mutableListOf<Music>()
         result.addAll(musicRepository.getMusicsByTitle(title = searchWord, brand = brand))
         result.addAll(musicRepository.getMusicsBySinger(singer = searchWord, brand = brand))
