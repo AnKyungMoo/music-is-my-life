@@ -25,12 +25,12 @@
             android:id="@+id/tv_song_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="72dp"
             android:textColor="#1C1C1C"
             android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_song_number"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tool:text="사건의 지평선" />
 
