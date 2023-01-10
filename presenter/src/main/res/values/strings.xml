@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search">search</string>
+    <string name="noraebang_number">노래방 번호</string>
+    <string name="gender">성별</string>
+    <string name="man">남</string>
+    <string name="woman">여</string>
+    <string name="key_control">키조절</string>
+    <string name="cancel">취소</string>
+    <string name="save">저장</string>
+    <string name="default_key">원키</string>
 </resources>
