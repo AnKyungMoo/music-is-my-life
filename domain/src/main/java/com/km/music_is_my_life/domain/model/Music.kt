@@ -8,4 +8,10 @@ data class Music(
     val composer: String,
     val lyricist: String,
     val release: String,
-)
+    val gender: SongGender = SongGender.MAN,
+    val key: Int = DEFAULT_KEY
+) {
+    companion object {
+        const val DEFAULT_KEY = 0
+    }
+}
