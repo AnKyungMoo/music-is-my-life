@@ -51,8 +51,8 @@ class MainActivity: AppCompatActivity() {
         bottomSheet.show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_toolbar_menu, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.main_toolbar_menu, menu)
+//        return true
+//    }
 }
