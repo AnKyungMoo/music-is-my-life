@@ -8,6 +8,8 @@ import com.km.music_is_my_life.domain.usecase.SearchForMusicUseCase
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 import com.km.music_is_my_life.presenter.ui.model.toUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,12 +21,21 @@ class SearchSongViewModel @Inject constructor(
     val searchSongs: LiveData<List<SongUiModel>>
         get() = _searchSongs
 
+    private var searchSongRequestJob: Job? = null
+
     fun searchSong(keyword: String) {
+        searchSongRequestJob?.cancel()
+
         /* TODO: 페이징에 대해 고민해보자 */
-        viewModelScope.launch {
+        searchSongRequestJob = viewModelScope.launch {
+            delay(SEARCH_INTERVAL)
             _searchSongs.value = searchSongUseCase.invoke(searchWord = keyword).map { music ->
                 music.toUiModel()
             }
         }
+    }
+
+    companion object {
+        private const val SEARCH_INTERVAL = 200L
     }
 }
