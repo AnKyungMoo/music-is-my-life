@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.presenter.databinding.FragmentAllSongBinding
-import com.km.music_is_my_life.presenter.ui.main.adapter.AllSongAdapter
+import com.km.music_is_my_life.presenter.ui.main.adapter.MainSongAdapter
 import com.km.music_is_my_life.presenter.ui.main.all_song.adapter.AllSongItemDecoration
 
 class AllSongFragment : Fragment() {
     private lateinit var binding: FragmentAllSongBinding
     private val viewModel: AllSongViewModel by viewModels()
-    private val allSongAdapter: AllSongAdapter = AllSongAdapter()
+    private val songAdapter: MainSongAdapter = MainSongAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +34,7 @@ class AllSongFragment : Fragment() {
 
     private fun initViews() {
         binding.rvSongList.apply {
-            adapter = allSongAdapter
+            adapter = songAdapter
             layoutManager = LinearLayoutManager(this@AllSongFragment.context)
             addItemDecoration(AllSongItemDecoration())
         }
@@ -45,7 +45,7 @@ class AllSongFragment : Fragment() {
             if (it.isEmpty()) showEmptyView()
             else hideEmptyView()
 
-            allSongAdapter.submitList(it)
+            songAdapter.submitList(it)
         }
     }
 

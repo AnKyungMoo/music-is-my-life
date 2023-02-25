@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.ItemGroupBinding
-import com.km.music_is_my_life.presenter.ui.main.adapter.AllSongAdapter
-import com.km.music_is_my_life.presenter.ui.main.all_song.adapter.AllSongItemDecoration
+import com.km.music_is_my_life.presenter.ui.main.adapter.MainSongAdapter
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
@@ -32,7 +31,7 @@ class GroupAdapter : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.
 }
 
 class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
-    private val songAdapter = AllSongAdapter()
+    private val songAdapter = MainSongAdapter()
     init {
         binding.root.setOnClickListener {
             binding.rvSongs.visibility = if (binding.rvSongs.isVisible) View.GONE else View.VISIBLE
