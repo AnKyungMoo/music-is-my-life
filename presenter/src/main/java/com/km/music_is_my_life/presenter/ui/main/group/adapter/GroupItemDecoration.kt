@@ -15,12 +15,11 @@ class GroupItemDecoration : ItemDecoration() {
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        if (parent.getChildAdapterPosition(view) == (state.itemCount - 1)) {
-            outRect.bottom = 12.dp(view.context)
-        } else if (parent.getChildAdapterPosition(view) == 0) {
+        if (parent.getChildAdapterPosition(view) == 0) {
             outRect.top = 12.dp(view.context)
         }
 
+        outRect.bottom = 12.dp(view.context)
         outRect.left = 13.dp(view.context)
         outRect.right = 23.dp(view.context)
     }
