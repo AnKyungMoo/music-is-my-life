@@ -1,4 +1,4 @@
-package com.km.music_is_my_life.presenter.ui.main.all_song.adapter
+package com.km.music_is_my_life.presenter.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

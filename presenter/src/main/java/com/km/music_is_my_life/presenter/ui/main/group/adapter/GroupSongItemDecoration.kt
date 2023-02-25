@@ -6,21 +6,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.km.music_is_my_life.presenter.ui.ext.dp
 
-class GroupItemDecoration : ItemDecoration() {
+class GroupSongItemDecoration : ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
         parent: RecyclerView,
-        state: RecyclerView.State,
+        state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
 
-        if (parent.getChildAdapterPosition(view) == 0) {
-            outRect.top = 12.dp(view.context)
-        }
+        outRect.top = 6.dp(view.context)
 
-        outRect.bottom = 12.dp(view.context)
-        outRect.left = 18.dp(view.context)
-        outRect.right = 18.dp(view.context)
+        if (parent.getChildAdapterPosition(view) == (state.itemCount - 1)) { // 맨 아래
+            outRect.bottom = 12.dp(view.context)
+        }
     }
 }

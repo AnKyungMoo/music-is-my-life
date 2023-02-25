@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.presenter.databinding.FragmentAllSongBinding
-import com.km.music_is_my_life.presenter.ui.main.all_song.adapter.AllSongAdapter
+import com.km.music_is_my_life.presenter.ui.main.adapter.AllSongAdapter
 import com.km.music_is_my_life.presenter.ui.main.all_song.adapter.AllSongItemDecoration
 
 class AllSongFragment : Fragment() {

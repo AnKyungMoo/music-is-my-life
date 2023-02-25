@@ -35,14 +35,14 @@ class GroupFragment : Fragment() {
 
         groupAdapter.submitList(
             listOf(
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
-                GroupUiModel("기본", 0),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
+                GroupUiModel("기본"),
             )
         )
     }
