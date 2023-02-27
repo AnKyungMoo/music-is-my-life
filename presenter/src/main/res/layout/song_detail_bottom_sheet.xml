@@ -8,15 +8,16 @@
         android:layout_height="match_parent"
         android:background="@drawable/bottom_sheet_background"
         app:behavior_draggable="true"
-        app:behavior_hideable="true"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        app:behavior_hideable="true">
 
         <ImageView
+            android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="18dp"
             android:src="@drawable/ic_close"
+            android:background="?attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:layout_marginTop="32dp"
-            android:textColor="@color/black_40"
+            android:textColor="@color/Text03"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/tv_song_title"
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@string/noraebang_number"
-            android:textColor="#8F8F8F"
+            android:textColor="@color/Text03"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_number"
@@ -98,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@string/gender"
-            android:textColor="#8F8F8F"
+            android:textColor="@color/Text03"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_gender"
@@ -167,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@string/key_control"
-            android:textColor="#8F8F8F"
+            android:textColor="@color/Text03"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_key"
@@ -180,6 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_minus"
+            android:background="?attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_key"
             app:layout_constraintEnd_toStartOf="@id/tv_song_key"
             app:layout_constraintTop_toTopOf="@id/layout_song_key" />
@@ -204,6 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_plus"
+            android:background="?attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_key"
             app:layout_constraintEnd_toEndOf="@id/layout_song_key"
             app:layout_constraintTop_toTopOf="@id/layout_song_key" />
@@ -212,7 +215,8 @@
             android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:background="#E6E6E6"
+            android:background="@color/Fill03"
+            android:foreground="?attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_save"
             app:layout_constraintStart_toStartOf="parent" />
@@ -233,7 +237,8 @@
             android:id="@+id/btn_save"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:background="@color/black"
+            android:background="@color/Fill07"
+            android:foreground="?attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_cancel" />

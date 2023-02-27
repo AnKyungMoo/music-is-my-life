@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.ActivitySearchSongBinding
+import com.km.music_is_my_life.presenter.ui.common.SongDetailBottomSheet
 import com.km.music_is_my_life.presenter.ui.search.adapter.SearchSongAdapter
 import com.km.music_is_my_life.presenter.ui.search.adapter.SearchSongItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +27,7 @@ class SearchSongActivity : AppCompatActivity() {
 
         initViews()
         observeData()
+        showSongDetailBottomSheet()
     }
 
     private fun initViews() {
@@ -38,7 +41,6 @@ class SearchSongActivity : AppCompatActivity() {
             addItemDecoration(SearchSongItemDecoration())
         }
         binding.etSearchSong.doAfterTextChanged { editable ->
-            /* TODO: 검색 텀을 두어야함 */
             editable?.let {
                 viewModel.searchSong(it.toString().replace(" ", ""))
             }
@@ -49,5 +51,23 @@ class SearchSongActivity : AppCompatActivity() {
         viewModel.searchSongs.observe(this) {
             searchSongAdapter.submitList(it)
         }
+    }
+
+    private fun showSongDetailBottomSheet() {
+        /* TODO: 맞는 위치 찾아가자 */
+        val bottomSheet =
+            SongDetailBottomSheet.newInstance(SongDetailBottomSheet.Companion.Configuration(
+                songTitle = "사건의 지평선",
+                singer = "윤하",
+                songNumber = 111,
+                gender = SongGender.WOMAN,
+                key = 0,
+            ))
+
+        bottomSheet.show(supportFragmentManager, TAG)
+    }
+
+    companion object {
+        const val TAG = "SearchSongActivity"
     }
 }
