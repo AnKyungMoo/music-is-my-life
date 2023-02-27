@@ -26,7 +26,6 @@ class SearchSongViewModel @Inject constructor(
     fun searchSong(keyword: String) {
         searchSongRequestJob?.cancel()
 
-        /* TODO: 페이징에 대해 고민해보자 */
         searchSongRequestJob = viewModelScope.launch {
             delay(SEARCH_INTERVAL)
             _searchSongs.value = searchSongUseCase.invoke(searchWord = keyword).map { music ->
