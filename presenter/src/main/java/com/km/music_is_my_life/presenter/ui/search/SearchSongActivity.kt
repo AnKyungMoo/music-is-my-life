@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.ActivitySearchSongBinding
 import com.km.music_is_my_life.presenter.ui.common.SongDetailBottomSheet
+import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 import com.km.music_is_my_life.presenter.ui.search.adapter.SearchSongAdapter
 import com.km.music_is_my_life.presenter.ui.search.adapter.SearchSongItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchSongActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchSongBinding
     private val viewModel: SearchSongViewModel by viewModels()
-    private val searchSongAdapter = SearchSongAdapter()
+    private val searchSongAdapter = SearchSongAdapter { songUiModel ->
+        showSongDetailBottomSheet(songUiModel)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,6 @@ class SearchSongActivity : AppCompatActivity() {
 
         initViews()
         observeData()
-        showSongDetailBottomSheet()
     }
 
     private fun initViews() {
@@ -53,16 +55,8 @@ class SearchSongActivity : AppCompatActivity() {
         }
     }
 
-    private fun showSongDetailBottomSheet() {
-        /* TODO: 맞는 위치 찾아가자 */
-        val bottomSheet =
-            SongDetailBottomSheet.newInstance(SongDetailBottomSheet.Companion.Configuration(
-                songTitle = "사건의 지평선",
-                singer = "윤하",
-                songNumber = 111,
-                gender = SongGender.WOMAN,
-                key = 0,
-            ))
+    private fun showSongDetailBottomSheet(songUiModel: SongUiModel) {
+        val bottomSheet = SongDetailBottomSheet.newInstance(songUiModel)
 
         bottomSheet.show(supportFragmentManager, TAG)
     }

@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.SongDetailBottomSheetBinding
+import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
 class SongDetailBottomSheet: BottomSheetDialogFragment() {
     private lateinit var binding: SongDetailBottomSheetBinding
 
     private var songTitle: String = ""
     private var singer: String = ""
-    private var songNumber: Int = 0
+    private var songNumber: String = "0"
     private var gender: SongGender = SongGender.MAN
     private var key: Int = 0
 
@@ -49,9 +50,9 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
     }
 
     private fun setupContents() {
-        songTitle = configuration.songTitle
+        songTitle = configuration.title
         singer = configuration.singer
-        songNumber = configuration.songNumber
+        songNumber = configuration.number
         gender = configuration.gender
         key = configuration.key
     }
@@ -59,7 +60,7 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
     private fun onBind() {
         binding.tvSongTitle.text = songTitle
         binding.tvSongSinger.text = singer
-        binding.tvSongNumber.text = songNumber.toString()
+        binding.tvSongNumber.text = songNumber
         when (gender) {
             SongGender.MAN -> binding.rbMan.isChecked = true
             SongGender.WOMAN -> binding.rbWoman.isChecked = true
@@ -67,21 +68,13 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
     }
 
     companion object {
-        private var configuration = Configuration()
-
         /* TODO: 더 좋은 구조가 있지 않을까 고민해보자.. */
-        fun newInstance(configuration: Configuration): SongDetailBottomSheet {
+        private var configuration = SongUiModel("", "", "", 0, SongGender.MAN)
+
+        fun newInstance(configuration: SongUiModel): SongDetailBottomSheet {
             return SongDetailBottomSheet().apply {
                 SongDetailBottomSheet.configuration = configuration
             }
         }
-
-        data class Configuration(
-            val songTitle: String = "",
-            val singer: String = "",
-            val songNumber: Int = 0,
-            val gender: SongGender = SongGender.MAN,
-            val key: Int = 0
-        )
     }
 }

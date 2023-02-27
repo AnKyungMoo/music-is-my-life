@@ -5,13 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.ItemAddSongBinding
+import com.km.music_is_my_life.presenter.ui.common.SongDetailBottomSheet
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
+import com.km.music_is_my_life.presenter.ui.search.SearchSongActivity
 
-class SearchSongAdapter : ListAdapter<SongUiModel, SearchSongViewHolder>(SearchSongViewHolder.diffUtil) {
+class SearchSongAdapter(
+    private val onClickItem: (SongUiModel) -> Unit
+) : ListAdapter<SongUiModel, SearchSongViewHolder>(SearchSongViewHolder.diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchSongViewHolder {
         return SearchSongViewHolder(
-            ItemAddSongBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemAddSongBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            onClickItem
         )
     }
 
@@ -20,11 +26,18 @@ class SearchSongAdapter : ListAdapter<SongUiModel, SearchSongViewHolder>(SearchS
     }
 }
 
-class SearchSongViewHolder(private val binding: ItemAddSongBinding) : ViewHolder(binding.root) {
+class SearchSongViewHolder(
+    private val binding: ItemAddSongBinding,
+    private val onClickItem: (SongUiModel) -> Unit,
+) : ViewHolder(binding.root) {
     fun onBind(song: SongUiModel) {
         binding.tvSongNumber.text = song.number
         binding.tvSongName.text = song.title
         binding.tvSinger.text = song.singer
+
+        binding.root.setOnClickListener {
+            onClickItem(song)
+        }
     }
 
     companion object {
