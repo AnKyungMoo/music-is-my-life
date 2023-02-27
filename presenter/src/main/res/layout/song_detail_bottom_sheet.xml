@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/Text05"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -35,64 +35,49 @@
             tool:text="사건의 지평선" />
 
         <TextView
-            android:id="@+id/tv_song_singer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="32dp"
-            android:textColor="@color/Text03"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/tv_song_title"
-            app:layout_constraintTop_toTopOf="parent"
-            tool:text="윤하" />
-
-        <RelativeLayout
-            android:id="@+id/layout_song_number"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/song_item_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_song_title" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:text="@string/noraebang_number"
-            android:textColor="@color/Text03"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/layout_song_number"
-            app:layout_constraintStart_toStartOf="@id/layout_song_number"
-            app:layout_constraintTop_toTopOf="@id/layout_song_number" />
-
-        <TextView
             android:id="@+id/tv_song_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:textColor="@color/black"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/Text03"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/layout_song_number"
-            app:layout_constraintEnd_toEndOf="@id/layout_song_number"
-            app:layout_constraintTop_toTopOf="@id/layout_song_number"
-            tool:text="12345" />
+            app:layout_constraintTop_toBottomOf="@id/tv_song_title"
+            app:layout_constraintStart_toStartOf="@id/tv_song_title"
+            tool:text="12345"/>
+
+        <ImageView
+            android:id="@+id/iv_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/number_and_singer_divider_background"
+            app:layout_constraintTop_toTopOf="@id/tv_song_number"
+            app:layout_constraintBottom_toBottomOf="@id/tv_song_number"
+            app:layout_constraintStart_toEndOf="@id/tv_song_number" />
+
+        <TextView
+            android:id="@+id/tv_song_singer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/Text03"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/iv_divider"
+            app:layout_constraintTop_toTopOf="@id/tv_song_number"
+            tool:text="윤하" />
 
         <RelativeLayout
             android:id="@+id/layout_song_gender"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/song_item_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_song_number" />
+            app:layout_constraintTop_toBottomOf="@id/tv_song_number" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -155,10 +140,8 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="6dp"
             android:background="@drawable/song_item_background"
-            app:layout_constraintBottom_toTopOf="@id/btn_cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_song_gender" />
@@ -210,6 +193,31 @@
             app:layout_constraintBottom_toBottomOf="@id/layout_song_key"
             app:layout_constraintEnd_toEndOf="@id/layout_song_key"
             app:layout_constraintTop_toTopOf="@id/layout_song_key" />
+
+        <RelativeLayout
+            android:id="@+id/layout_group"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/song_item_background"
+            app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_song_key" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/group"
+            android:textColor="@color/Text03"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/layout_group"
+            app:layout_constraintStart_toStartOf="@id/layout_group"
+            app:layout_constraintTop_toTopOf="@id/layout_group" />
 
         <RelativeLayout
             android:id="@+id/btn_cancel"

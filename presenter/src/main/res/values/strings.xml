@@ -9,4 +9,5 @@
     <string name="cancel">취소</string>
     <string name="save">저장</string>
     <string name="default_key">원키</string>
+    <string name="group">그룹</string>
 </resources>
