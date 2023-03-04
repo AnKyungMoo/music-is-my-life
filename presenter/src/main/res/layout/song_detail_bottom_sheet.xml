@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="18dp"
-            android:src="@drawable/ic_close"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,9 +42,9 @@
             android:textColor="@color/Text03"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tv_song_title"
             app:layout_constraintStart_toStartOf="@id/tv_song_title"
-            tool:text="12345"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_song_title"
+            tool:text="12345" />
 
         <ImageView
             android:id="@+id/iv_divider"
@@ -52,9 +52,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:src="@drawable/number_and_singer_divider_background"
-            app:layout_constraintTop_toTopOf="@id/tv_song_number"
             app:layout_constraintBottom_toBottomOf="@id/tv_song_number"
-            app:layout_constraintStart_toEndOf="@id/tv_song_number" />
+            app:layout_constraintStart_toEndOf="@id/tv_song_number"
+            app:layout_constraintTop_toTopOf="@id/tv_song_number" />
 
         <TextView
             android:id="@+id/tv_song_singer"
@@ -163,8 +163,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_minus"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_minus"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_key"
             app:layout_constraintEnd_toStartOf="@id/tv_song_key"
             app:layout_constraintTop_toTopOf="@id/layout_song_key" />
@@ -188,8 +188,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_plus"
             android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_plus"
             app:layout_constraintBottom_toBottomOf="@id/layout_song_key"
             app:layout_constraintEnd_toEndOf="@id/layout_song_key"
             app:layout_constraintTop_toTopOf="@id/layout_song_key" />
@@ -218,6 +218,53 @@
             app:layout_constraintBottom_toBottomOf="@id/layout_group"
             app:layout_constraintStart_toStartOf="@id/layout_group"
             app:layout_constraintTop_toTopOf="@id/layout_group" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_group_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="@id/layout_group"
+            app:layout_constraintEnd_toEndOf="@id/layout_group"
+            app:layout_constraintTop_toTopOf="@id/layout_group">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_group_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_listgroup"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_group_name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/Fill07" />
+
+            <TextView
+                android:id="@+id/tv_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:textColor="@color/Fill07"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_group_open"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:ignore="SpUsage"
+                tool:text="전체" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_group_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_group_open"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/Fill06" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
             android:id="@+id/btn_cancel"

@@ -48,9 +48,8 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         }
         binding.btnPlus.setOnClickListener { key++ }
         binding.btnMinus.setOnClickListener { key-- }
-        /* TODO: group 레이아웃 정의되면 클릭범위 수정 */
-        binding.layoutGroup.setOnClickListener {
-            GroupDialog().show(parentFragmentManager, "")
+        binding.btnGroupSelector.setOnClickListener {
+            GroupDialog().show(parentFragmentManager, TAG)
         }
     }
 
@@ -73,6 +72,8 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
     }
 
     companion object {
+        private const val TAG: String = "SongDetailBottomSheet"
+
         /* TODO: 더 좋은 구조가 있지 않을까 고민해보자.. */
         private var configuration = SongUiModel("", "", "", 0, SongGender.MAN)
 
