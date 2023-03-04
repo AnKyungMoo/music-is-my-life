@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.presenter.R
@@ -43,6 +42,7 @@ class GroupDialog : DialogFragment() {
             adapter = dialogGroupAdapter
             layoutManager = LinearLayoutManager(this@GroupDialog.context)
             addItemDecoration(DialogGroupItemDecoration())
+            itemAnimator = null
         }
 
         dialogGroupAdapter.submitList(
