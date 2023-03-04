@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.km.music_is_my_life.domain.model.Music
 
 @Entity(tableName = "favorite_music")
-data class FavoriteMusicEntity (
+internal data class FavoriteMusicEntity (
     @PrimaryKey
     val musicNumber: String,
     val title: String,
@@ -14,7 +14,7 @@ data class FavoriteMusicEntity (
     val key: Int,
 )
 
-fun Music.toEntity(): FavoriteMusicEntity {
+internal fun Music.toEntity(): FavoriteMusicEntity {
     return FavoriteMusicEntity(
         musicNumber = no,
         title = title,
