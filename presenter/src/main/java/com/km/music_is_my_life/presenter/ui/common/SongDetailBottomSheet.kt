@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.SongDetailBottomSheetBinding
+import com.km.music_is_my_life.presenter.ui.common.dialog.GroupDialog
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
 class SongDetailBottomSheet: BottomSheetDialogFragment() {
@@ -47,6 +48,10 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         }
         binding.btnPlus.setOnClickListener { key++ }
         binding.btnMinus.setOnClickListener { key-- }
+        /* TODO: group 레이아웃 정의되면 클릭범위 수정 */
+        binding.layoutGroup.setOnClickListener {
+            GroupDialog().show(parentFragmentManager, "")
+        }
     }
 
     private fun setupContents() {
