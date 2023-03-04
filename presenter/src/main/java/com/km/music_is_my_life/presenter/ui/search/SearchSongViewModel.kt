@@ -35,6 +35,6 @@ class SearchSongViewModel @Inject constructor(
     }
 
     companion object {
-        private const val SEARCH_INTERVAL = 200L
+        private const val SEARCH_INTERVAL = 100L
     }
 }
