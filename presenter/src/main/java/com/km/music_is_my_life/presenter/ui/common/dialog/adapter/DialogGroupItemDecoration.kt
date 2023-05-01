@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.km.music_is_my_life.presenter.ui.ext.dp
+import com.km.music_is_my_life.presenter.ext.dp
 
 class DialogGroupItemDecoration : ItemDecoration() {
     override fun getItemOffsets(

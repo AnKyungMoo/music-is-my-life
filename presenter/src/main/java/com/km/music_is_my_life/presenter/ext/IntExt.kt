@@ -1,4 +1,4 @@
-package com.km.music_is_my_life.presenter.ui.ext
+package com.km.music_is_my_life.presenter.ext
 
 import android.content.Context
 import kotlin.math.roundToInt

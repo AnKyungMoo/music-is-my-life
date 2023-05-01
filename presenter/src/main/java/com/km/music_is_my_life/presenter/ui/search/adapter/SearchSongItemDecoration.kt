@@ -3,7 +3,7 @@ package com.km.music_is_my_life.presenter.ui.search.adapter
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.km.music_is_my_life.presenter.ui.ext.dp
+import com.km.music_is_my_life.presenter.ext.dp
 
 class SearchSongItemDecoration : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
