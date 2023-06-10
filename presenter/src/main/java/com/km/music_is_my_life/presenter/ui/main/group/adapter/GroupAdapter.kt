@@ -3,6 +3,7 @@ package com.km.music_is_my_life.presenter.ui.main.group.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,6 +54,12 @@ class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.View
     fun onBind(groupItem: GroupUiModel) {
         binding.tvGroupName.text = groupItem.groupName
         binding.tvGroupCount.text = songAdapter.itemCount.toString()
+        binding.ivGroupIcon.setColorFilter(
+            ContextCompat.getColor(
+                binding.root.context,
+                groupItem.color.colorResId,
+            )
+        )
     }
 
     companion object {

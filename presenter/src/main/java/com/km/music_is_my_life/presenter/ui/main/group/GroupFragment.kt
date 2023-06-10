@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.presenter.databinding.FragmentGroupBinding
 import com.km.music_is_my_life.presenter.ui.main.group.adapter.GroupAdapter
 import com.km.music_is_my_life.presenter.ui.main.group.adapter.GroupItemDecoration
+import com.km.music_is_my_life.presenter.ui.model.GroupColor
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +47,7 @@ class GroupFragment : Fragment() {
 
     private fun observeData() {
         viewModel.groups.observe(viewLifecycleOwner) {
-            val list = mutableListOf(GroupUiModel("기본그룹", "RED"))
+            val list = mutableListOf(GroupUiModel("기본그룹", GroupColor.PURPLE))
             list.addAll(it)
 
             groupAdapter.submitList(list)

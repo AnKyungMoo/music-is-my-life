@@ -4,13 +4,17 @@ import com.km.music_is_my_life.domain.model.Group
 
 data class GroupUiModel(
     val groupName: String,
-    val color: String,
+    val color: GroupColor,
 )
 
-/* TODO: color를 enum으로 정의해둘까? 색상 정보를 여기서 알 수 있게 하면 좋을듯!? */
 fun Group.toUiModel(): GroupUiModel {
+    val groupColor = GroupColor.fromColorName(color)
+    requireNotNull(groupColor) {
+        "정의되지 않은 색상 값이 있습니다."
+    }
+
     return GroupUiModel(
         groupName = name,
-        color = color,
+        color = groupColor,
     )
 }
