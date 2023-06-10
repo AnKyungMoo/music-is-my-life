@@ -5,15 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.DialogGroupBinding
 import com.km.music_is_my_life.presenter.ui.common.dialog.adapter.DialogGroupAdapter
 import com.km.music_is_my_life.presenter.ui.common.dialog.adapter.DialogGroupItemDecoration
-import com.km.music_is_my_life.presenter.ui.common.dialog.model.DialogGroupUiModel
+import com.km.music_is_my_life.presenter.ui.model.GroupColor
+import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GroupDialog : DialogFragment() {
     private lateinit var binding: DialogGroupBinding
+    private val viewModel: GroupDialogViewModel by viewModels()
     private val dialogGroupAdapter = DialogGroupAdapter()
 
     override fun onCreateView(
@@ -29,6 +33,9 @@ class GroupDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
+        observeData()
+
+        viewModel.loadGroups()
     }
     
     private fun initViews() {
@@ -44,13 +51,15 @@ class GroupDialog : DialogFragment() {
             addItemDecoration(DialogGroupItemDecoration())
             itemAnimator = null
         }
+    }
 
-        dialogGroupAdapter.submitList(
-            listOf(
-                DialogGroupUiModel("전체", R.color.Fill07),
-                DialogGroupUiModel("아이돌", R.color.Fill08),
-                DialogGroupUiModel("힙합", R.color.Fill09),
-            )
-        )
+    private fun observeData() {
+        viewModel.groups.observe(viewLifecycleOwner) {
+            val list =
+                mutableListOf(GroupUiModel(GroupUiModel.DEFAULT_GROUP_NAME, GroupColor.PURPLE))
+            list.addAll(it)
+
+            dialogGroupAdapter.submitList(list)
+        }
     }
 }

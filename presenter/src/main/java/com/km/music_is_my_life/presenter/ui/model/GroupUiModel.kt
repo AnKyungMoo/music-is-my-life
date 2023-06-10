@@ -5,7 +5,11 @@ import com.km.music_is_my_life.domain.model.Group
 data class GroupUiModel(
     val groupName: String,
     val color: GroupColor,
-)
+) {
+    companion object {
+        const val DEFAULT_GROUP_NAME = "기본그룹"
+    }
+}
 
 fun Group.toUiModel(): GroupUiModel {
     val groupColor = GroupColor.fromColorName(color)

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.ItemDialogGroupBinding
-import com.km.music_is_my_life.presenter.ui.common.dialog.model.DialogGroupUiModel
+import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 
 class DialogGroupAdapter(
     private var isSelectedItemIndex: Int = 0
-): ListAdapter<DialogGroupUiModel, DialogGroupViewHolder>(DialogGroupViewHolder.diffUtil) {
+): ListAdapter<GroupUiModel, DialogGroupViewHolder>(DialogGroupViewHolder.diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DialogGroupViewHolder {
         return DialogGroupViewHolder(
@@ -41,10 +41,10 @@ class DialogGroupAdapter(
 class DialogGroupViewHolder(
     private val binding: ItemDialogGroupBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun onBind(item: DialogGroupUiModel, isSelected: Boolean, notifyDataChanged: () -> Unit) {
-        val groupColor = ContextCompat.getColor(binding.root.context, item.color)
+    fun onBind(item: GroupUiModel, isSelected: Boolean, notifyDataChanged: () -> Unit) {
+        val groupColor = ContextCompat.getColor(binding.root.context, item.color.colorResId)
 
-        binding.tvGroupName.text = item.title
+        binding.tvGroupName.text = item.groupName
         binding.tvGroupName.setTextColor(groupColor)
         binding.ivGroupIcon.setColorFilter(groupColor)
 
@@ -62,15 +62,15 @@ class DialogGroupViewHolder(
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<DialogGroupUiModel>() {
+        val diffUtil = object : DiffUtil.ItemCallback<GroupUiModel>() {
             override fun areItemsTheSame(
-                oldItem: DialogGroupUiModel,
-                newItem: DialogGroupUiModel,
-            ): Boolean = (oldItem.title == newItem.title) && (oldItem.color == newItem.color)
+                oldItem: GroupUiModel,
+                newItem: GroupUiModel,
+            ): Boolean = (oldItem.groupName == newItem.groupName) && (oldItem.color == newItem.color)
 
             override fun areContentsTheSame(
-                oldItem: DialogGroupUiModel,
-                newItem: DialogGroupUiModel,
+                oldItem: GroupUiModel,
+                newItem: GroupUiModel,
             ): Boolean = oldItem == newItem
         }
     }
