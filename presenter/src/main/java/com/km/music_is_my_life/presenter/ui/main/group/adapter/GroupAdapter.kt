@@ -34,6 +34,7 @@ class GroupAdapter : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.
 class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
     private val songAdapter = MainSongAdapter()
     init {
+        /* TODO: 그룹 접기 아이콘 변경 */
         binding.root.setOnClickListener {
             binding.rvSongs.visibility = if (binding.rvSongs.isVisible) View.GONE else View.VISIBLE
         }
@@ -42,13 +43,6 @@ class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.View
             layoutManager = LinearLayoutManager(binding.root.context)
             addItemDecoration(GroupSongItemDecoration())
         }
-        songAdapter.submitList(listOf(
-            SongUiModel("1212", "ss", "aae", 0, SongGender.MAN),
-            SongUiModel("1212", "ss", "aae", 0, SongGender.MAN),
-            SongUiModel("1212", "ss", "aae", 0, SongGender.MAN),
-            SongUiModel("1212", "ss", "aae", 0, SongGender.MAN),
-            SongUiModel("1212", "ss", "aae", 0, SongGender.MAN),
-        ))
     }
 
     fun onBind(groupItem: GroupUiModel) {
