@@ -47,11 +47,7 @@ class GroupFragment : Fragment() {
 
     private fun observeData() {
         viewModel.groups.observe(viewLifecycleOwner) {
-            val list =
-                mutableListOf(GroupUiModel(GroupUiModel.DEFAULT_GROUP_NAME, GroupColor.PURPLE))
-            list.addAll(it)
-
-            groupAdapter.submitList(list)
+            groupAdapter.submitList(it)
         }
     }
 }

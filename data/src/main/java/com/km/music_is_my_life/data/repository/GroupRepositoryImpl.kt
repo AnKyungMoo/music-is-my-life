@@ -26,4 +26,10 @@ internal class GroupRepositoryImpl @Inject constructor(
             groupDao.addGroup(group.toEntity())
         }
     }
+
+    override suspend fun getGroup(name: String): Group? {
+        return withContext(Dispatchers.IO) {
+            groupDao.getGroup(name)?.toDomainModel()
+        }
+    }
 }

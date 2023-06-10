@@ -13,4 +13,7 @@ internal interface GroupDao {
 
     @Query("select * from group_info")
     fun getGroups(): List<GroupEntity>
+
+    @Query("select * from group_info where name=:name")
+    fun getGroup(name: String): GroupEntity?
 }

@@ -60,11 +60,7 @@ class GroupDialog : DialogFragment() {
 
     private fun observeData() {
         viewModel.groups.observe(viewLifecycleOwner) {
-            val list =
-                mutableListOf(GroupUiModel(GroupUiModel.DEFAULT_GROUP_NAME, GroupColor.PURPLE))
-            list.addAll(it)
-
-            dialogGroupAdapter.submitList(list)
+            dialogGroupAdapter.submitList(it)
         }
     }
 

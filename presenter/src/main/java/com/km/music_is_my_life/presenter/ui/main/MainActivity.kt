@@ -2,6 +2,7 @@ package com.km.music_is_my_life.presenter.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.km.music_is_my_life.presenter.databinding.ActivityMainBinding
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
 
     private val tabTitles = listOf("전체", "그룹별")
 
@@ -23,6 +25,7 @@ class MainActivity: AppCompatActivity() {
 
         initToolbar()
         initViews()
+        viewModel.insertDefaultGroupIfNeed()
     }
 
     private fun initToolbar() {

@@ -6,6 +6,13 @@ data class GroupUiModel(
     val groupName: String,
     val color: GroupColor,
 ) {
+    fun toDomainModel(): Group {
+        return Group(
+            name = groupName,
+            color = color.colorName,
+        )
+    }
+
     companion object {
         const val DEFAULT_GROUP_NAME = "기본그룹"
         val DEFAULT_GROUP = GroupUiModel(groupName = DEFAULT_GROUP_NAME, color = GroupColor.PURPLE)
