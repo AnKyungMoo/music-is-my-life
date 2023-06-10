@@ -14,8 +14,7 @@ data class GroupUiModel(
     }
 
     companion object {
-        const val DEFAULT_GROUP_NAME = "기본그룹"
-        val DEFAULT_GROUP = GroupUiModel(groupName = DEFAULT_GROUP_NAME, color = GroupColor.PURPLE)
+        val DEFAULT_GROUP = GroupUiModel(groupName = Group.DEFAULT_GROUP_NAME, color = GroupColor.PURPLE)
     }
 }
 

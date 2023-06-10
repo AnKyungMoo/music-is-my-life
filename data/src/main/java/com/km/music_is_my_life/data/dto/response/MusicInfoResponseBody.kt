@@ -1,6 +1,7 @@
 package com.km.music_is_my_life.data.dto.response
 
 import com.google.gson.annotations.SerializedName
+import com.km.music_is_my_life.domain.model.Group
 import com.km.music_is_my_life.domain.model.Music
 
 internal data class MusicInfoResponseBody(
@@ -17,7 +18,8 @@ internal data class MusicInfoResponseBody(
             no = no,
             title = title,
             singer = singer,
-            groupName = null,
+            // api 검색을 통해서 얻어온 response는 그룹 정보를 가지지 않는다.
+            groupName = Group.DEFAULT_GROUP_NAME,
         )
     }
 }

@@ -24,7 +24,7 @@ internal data class FavoriteMusicEntity (
     @ColumnInfo(name = "singer") val singer: String,
     @ColumnInfo(name = "gender") val gender: String,
     @ColumnInfo(name = "key") val key: Int,
-    @ColumnInfo(name = "group_name") val groupName: String?,
+    @ColumnInfo(name = "group_name") val groupName: String,
 ) {
     fun toDomainModel(): Music {
         return Music(

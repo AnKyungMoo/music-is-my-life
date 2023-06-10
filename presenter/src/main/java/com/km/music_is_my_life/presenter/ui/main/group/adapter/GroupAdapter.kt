@@ -16,6 +16,8 @@ import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
 class GroupAdapter : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.diffUtil) {
+    private val songs = mutableListOf<SongUiModel>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
         return GroupViewHolder(
             ItemGroupBinding.inflate(
@@ -27,7 +29,13 @@ class GroupAdapter : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.
     }
 
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
-        holder.onBind(currentList[position])
+        holder.onBind(currentList[position], songs)
+    }
+
+    fun updateSongs(songs: List<SongUiModel>) {
+        this.songs.clear()
+        this.songs.addAll(songs)
+        notifyDataSetChanged()
     }
 }
 
@@ -45,15 +53,19 @@ class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.View
         }
     }
 
-    fun onBind(groupItem: GroupUiModel) {
+    fun onBind(groupItem: GroupUiModel, songs: List<SongUiModel>) {
+        val songsInGroup = songs.filter { it.groupName == groupItem.groupName }
+
         binding.tvGroupName.text = groupItem.groupName
-        binding.tvGroupCount.text = songAdapter.itemCount.toString()
+        binding.tvGroupCount.text = songsInGroup.size.toString()
         binding.ivGroupIcon.setColorFilter(
             ContextCompat.getColor(
                 binding.root.context,
                 groupItem.color.colorResId,
             )
         )
+        /* TODO: 이렇게하면 스크롤할 때 버벅거리는 이슈가 생기지 않을까..? 데이터 양을 늘려서 테스트 필요 */
+        songAdapter.submitList(songsInGroup)
     }
 
     companion object {

@@ -9,6 +9,7 @@ data class SongUiModel(
     val singer: String,
     val key: Int,
     val gender: SongGender,
+    val groupName: String,
 )
 
 fun Music.toUiModel(): SongUiModel {
@@ -18,5 +19,6 @@ fun Music.toUiModel(): SongUiModel {
         singer = this.singer,
         key = key,
         gender = gender,
+        groupName = this.groupName,
     )
 }

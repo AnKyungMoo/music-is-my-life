@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.km.music_is_my_life.domain.model.Group
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.SongDetailBottomSheetBinding
@@ -126,7 +127,8 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         private const val TAG: String = "SongDetailBottomSheet"
 
         /* TODO: 더 좋은 구조가 있지 않을까 고민해보자.. */
-        private var configuration = SongUiModel("", "", "", 0, SongGender.MAN)
+        private var configuration =
+            SongUiModel("", "", "", 0, SongGender.MAN, Group.DEFAULT_GROUP_NAME)
 
         fun newInstance(configuration: SongUiModel): SongDetailBottomSheet {
             return SongDetailBottomSheet().apply {
