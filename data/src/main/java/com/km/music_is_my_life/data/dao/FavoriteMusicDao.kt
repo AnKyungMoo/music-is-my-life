@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.km.music_is_my_life.data.entity.FavoriteMusicEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 internal interface FavoriteMusicDao {
@@ -12,5 +13,5 @@ internal interface FavoriteMusicDao {
     fun insertMusic(favoriteMusicEntity: FavoriteMusicEntity): Long
 
     @Query("select * from favorite_music")
-    fun getFavoriteMusics(): List<FavoriteMusicEntity>
+    fun getFavoriteMusics(): Flow<List<FavoriteMusicEntity>>
 }

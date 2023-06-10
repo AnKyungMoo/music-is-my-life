@@ -6,11 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.presenter.databinding.FragmentAllSongBinding
 import com.km.music_is_my_life.presenter.ui.main.adapter.MainSongAdapter
 import com.km.music_is_my_life.presenter.ui.main.all_song.adapter.AllSongItemDecoration
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class AllSongFragment : Fragment() {
     private lateinit var binding: FragmentAllSongBinding
     private val viewModel: AllSongViewModel by viewModels()
@@ -41,11 +48,15 @@ class AllSongFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.songs.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) showEmptyView()
-            else hideEmptyView()
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.songs.collectLatest {
+                    if (it.isEmpty()) showEmptyView()
+                    else hideEmptyView()
 
-            songAdapter.submitList(it)
+                    songAdapter.submitList(it)
+                }
+            }
         }
     }
 

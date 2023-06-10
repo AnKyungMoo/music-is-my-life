@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.km.music_is_my_life.domain.model.Music
+import com.km.music_is_my_life.domain.model.SongGender
 
 @Entity(
     tableName = "favorite_music",
@@ -24,7 +25,18 @@ internal data class FavoriteMusicEntity (
     @ColumnInfo(name = "gender") val gender: String,
     @ColumnInfo(name = "key") val key: Int,
     @ColumnInfo(name = "group_name") val groupName: String?,
-)
+) {
+    fun toDomainModel(): Music {
+        return Music(
+            title = title,
+            no = musicNumber,
+            singer = singer,
+            gender = SongGender.fromValues(gender) ?: SongGender.MAN,
+            key = key,
+            groupName = groupName,
+        )
+    }
+}
 
 internal fun Music.toEntity(): FavoriteMusicEntity {
     return FavoriteMusicEntity(
