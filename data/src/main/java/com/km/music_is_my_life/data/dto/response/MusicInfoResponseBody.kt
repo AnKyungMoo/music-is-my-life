@@ -14,13 +14,9 @@ internal data class MusicInfoResponseBody(
 ) {
     fun toDomainModel(): Music {
         return Music(
-            brand = brand,
             no = no,
             title = title,
             singer = singer,
-            composer = composer,
-            lyricist = lyricist,
-            release = release,
             groupName = null,
         )
     }

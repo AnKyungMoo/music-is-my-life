@@ -31,7 +31,7 @@ internal fun Music.toEntity(): FavoriteMusicEntity {
         musicNumber = no,
         title = title,
         singer = singer,
-        gender = brand,
+        gender = gender.value,
         key = key,
         groupName = groupName,
     )

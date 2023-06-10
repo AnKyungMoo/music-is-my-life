@@ -1,10 +1,19 @@
 package com.km.music_is_my_life.presenter.ui.common.bottom_sheet
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.km.music_is_my_life.domain.model.Music
 import com.km.music_is_my_life.domain.model.SongGender
+import com.km.music_is_my_life.domain.usecase.InsertFavoriteMusicUseCase
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SongDetailBottomSheetViewModel : ViewModel() {
+@HiltViewModel
+class SongDetailBottomSheetViewModel @Inject constructor(
+    private val insertFavoriteMusicUseCase: InsertFavoriteMusicUseCase
+) : ViewModel() {
     var songTitle: String = ""
         private set
     var singer: String = ""
@@ -40,6 +49,21 @@ class SongDetailBottomSheetViewModel : ViewModel() {
     fun keyDown() {
         if (key - 1 >= MIN_KEY) {
             key--
+        }
+    }
+
+    fun saveFavoriteSong() {
+        viewModelScope.launch {
+            insertFavoriteMusicUseCase(
+                Music(
+                    no = songNumber,
+                    title = songTitle,
+                    singer = singer,
+                    gender = gender,
+                    key = key,
+                    groupName = group.groupName,
+                )
+            )
         }
     }
 

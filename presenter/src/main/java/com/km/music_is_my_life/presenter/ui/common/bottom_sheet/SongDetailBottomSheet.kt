@@ -14,8 +14,10 @@ import com.km.music_is_my_life.presenter.ui.common.dialog.GroupDialog
 import com.km.music_is_my_life.presenter.ui.common.dialog.SongDetailBottomSheetListener
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.absoluteValue
 
+@AndroidEntryPoint
 class SongDetailBottomSheet: BottomSheetDialogFragment() {
     private lateinit var binding: SongDetailBottomSheetBinding
     private val viewModel: SongDetailBottomSheetViewModel by viewModels()
@@ -57,7 +59,7 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
             dismiss()
         }
         binding.btnSave.setOnClickListener {
-            /* TODO: save */
+            viewModel.saveFavoriteSong()
         }
         binding.btnPlus.setOnClickListener {
             viewModel.keyUp()
