@@ -11,11 +11,13 @@ import com.km.music_is_my_life.presenter.databinding.FragmentGroupBinding
 import com.km.music_is_my_life.presenter.ui.main.group.adapter.GroupAdapter
 import com.km.music_is_my_life.presenter.ui.main.group.adapter.GroupItemDecoration
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GroupFragment : Fragment() {
     private lateinit var binding: FragmentGroupBinding
-    private val groupAdapter = GroupAdapter()
     private val viewModel: GroupViewModel by viewModels()
+    private val groupAdapter = GroupAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,16 +31,25 @@ class GroupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
+        observeData()
+        viewModel.loadGroups()
+    }
+
+    private fun initViews() {
         binding.rvGroupList.apply {
             adapter = groupAdapter
             layoutManager = LinearLayoutManager(this@GroupFragment.context)
             addItemDecoration(GroupItemDecoration())
         }
+    }
 
-        groupAdapter.submitList(
-            listOf(
-                GroupUiModel("기본", "RED"),
-            )
-        )
+    private fun observeData() {
+        viewModel.groups.observe(viewLifecycleOwner) {
+            val list = mutableListOf(GroupUiModel("기본", "RED"))
+            list.addAll(it)
+
+            groupAdapter.submitList(list)
+        }
     }
 }

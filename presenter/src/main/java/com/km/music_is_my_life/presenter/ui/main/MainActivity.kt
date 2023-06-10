@@ -7,7 +7,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.km.music_is_my_life.presenter.databinding.ActivityMainBinding
 import com.km.music_is_my_life.presenter.ui.main.adapter.MainTabAdapter
 import com.km.music_is_my_life.presenter.ui.search.SearchSongActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

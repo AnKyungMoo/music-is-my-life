@@ -5,6 +5,8 @@ import com.km.music_is_my_life.data.database.MainDatabase
 import com.km.music_is_my_life.data.entity.toDomainModel
 import com.km.music_is_my_life.domain.model.Group
 import com.km.music_is_my_life.domain.repository.GroupRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 internal class GroupRepositoryImpl @Inject constructor(
@@ -12,5 +14,9 @@ internal class GroupRepositoryImpl @Inject constructor(
 ) : GroupRepository {
     private val groupDao: GroupDao = database.groupDao()
 
-    override fun getGroups(): List<Group> = groupDao.getGroups().map { it.toDomainModel() }
+    override suspend fun getGroups(): List<Group> {
+        return withContext(Dispatchers.IO) {
+            groupDao.getGroups().map { it.toDomainModel() }
+        }
+    }
 }
