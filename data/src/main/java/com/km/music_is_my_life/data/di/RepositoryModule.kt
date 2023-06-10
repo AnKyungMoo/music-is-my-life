@@ -1,6 +1,8 @@
 package com.km.music_is_my_life.data.di
 
+import com.km.music_is_my_life.data.repository.GroupRepositoryImpl
 import com.km.music_is_my_life.data.repository.MusicRepositoryImpl
+import com.km.music_is_my_life.domain.repository.GroupRepository
 import com.km.music_is_my_life.domain.repository.MusicRepository
 import dagger.Binds
 import dagger.Module
@@ -14,4 +16,8 @@ internal interface RepositoryModule {
     @Binds
     @Singleton
     fun bindMusicRepository(musicRepositoryImpl: MusicRepositoryImpl): MusicRepository
+
+    @Binds
+    @Singleton
+    fun bindGroupRepository(groupRepositoryImpl: GroupRepositoryImpl): GroupRepository
 }
