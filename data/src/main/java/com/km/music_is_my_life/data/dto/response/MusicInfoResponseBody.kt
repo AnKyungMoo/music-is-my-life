@@ -21,6 +21,7 @@ internal data class MusicInfoResponseBody(
             composer = composer,
             lyricist = lyricist,
             release = release,
+            groupName = null,
         )
     }
 }

@@ -9,7 +9,8 @@ data class Music(
     val lyricist: String,
     val release: String,
     val gender: SongGender = SongGender.MAN,
-    val key: Int = DEFAULT_KEY
+    val key: Int = DEFAULT_KEY,
+    val groupName: String?,
 ) {
     companion object {
         const val DEFAULT_KEY = 0
