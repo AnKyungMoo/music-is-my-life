@@ -11,9 +11,10 @@ import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.ItemDialogGroupBinding
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 
-class DialogGroupAdapter(
-    private var isSelectedItemIndex: Int = 0
-): ListAdapter<GroupUiModel, DialogGroupViewHolder>(DialogGroupViewHolder.diffUtil) {
+class DialogGroupAdapter :
+    ListAdapter<GroupUiModel, DialogGroupViewHolder>(DialogGroupViewHolder.diffUtil) {
+    var isSelectedItemIndex: Int = 0
+        private set
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DialogGroupViewHolder {
         return DialogGroupViewHolder(

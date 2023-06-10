@@ -1,13 +1,16 @@
-package com.km.music_is_my_life.presenter.ui.common
+package com.km.music_is_my_life.presenter.ui.common.bottom_sheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.SongDetailBottomSheetBinding
 import com.km.music_is_my_life.presenter.ui.common.dialog.GroupDialog
+import com.km.music_is_my_life.presenter.ui.common.dialog.SongDetailBottomSheetListener
+import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
 class SongDetailBottomSheet: BottomSheetDialogFragment() {
@@ -18,6 +21,19 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
     private var songNumber: String = "0"
     private var gender: SongGender = SongGender.MAN
     private var key: Int = 0
+    private var group: GroupUiModel = GroupUiModel.DEFAULT_GROUP
+
+    private val songDetailBottomSheetListener = object : SongDetailBottomSheetListener {
+        override fun setGroupInfo(group: GroupUiModel) {
+            this@SongDetailBottomSheet.group = group
+
+            val groupColor = ContextCompat.getColor(requireContext(), group.color.colorResId)
+
+            binding.tvGroupName.text = group.groupName
+            binding.tvGroupName.setTextColor(groupColor)
+            binding.ivGroupIcon.setColorFilter(groupColor)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +65,9 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         binding.btnPlus.setOnClickListener { key++ }
         binding.btnMinus.setOnClickListener { key-- }
         binding.btnGroupSelector.setOnClickListener {
-            GroupDialog().show(parentFragmentManager, TAG)
+            val groupDialog = GroupDialog()
+            groupDialog.setSongDetailBottomSheetListener(songDetailBottomSheetListener)
+            groupDialog.show(parentFragmentManager, TAG)
         }
     }
 
@@ -69,6 +87,11 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
             SongGender.MAN -> binding.rbMan.isChecked = true
             SongGender.WOMAN -> binding.rbWoman.isChecked = true
         }
+        binding.tvGroupName.text = group.groupName
+        val groupColor = ContextCompat.getColor(requireContext(), group.color.colorResId)
+
+        binding.tvGroupName.setTextColor(groupColor)
+        binding.ivGroupIcon.setColorFilter(groupColor)
     }
 
     companion object {
@@ -79,7 +102,7 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
 
         fun newInstance(configuration: SongUiModel): SongDetailBottomSheet {
             return SongDetailBottomSheet().apply {
-                SongDetailBottomSheet.configuration = configuration
+                Companion.configuration = configuration
             }
         }
     }

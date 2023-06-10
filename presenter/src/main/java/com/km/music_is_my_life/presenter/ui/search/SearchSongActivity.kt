@@ -6,9 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.ActivitySearchSongBinding
-import com.km.music_is_my_life.presenter.ui.common.SongDetailBottomSheet
+import com.km.music_is_my_life.presenter.ui.common.bottom_sheet.SongDetailBottomSheet
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 import com.km.music_is_my_life.presenter.ui.search.adapter.SearchSongAdapter
 import com.km.music_is_my_life.presenter.ui.search.adapter.SearchSongItemDecoration

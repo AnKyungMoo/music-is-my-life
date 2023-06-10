@@ -245,14 +245,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:textColor="@color/Fill07"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/iv_group_open"
                 app:layout_constraintTop_toTopOf="parent"
                 tool:ignore="SpUsage"
-                tool:text="전체" />
+                tool:text="전체"
+                tool:textColor="@color/Fill07" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_group_open"

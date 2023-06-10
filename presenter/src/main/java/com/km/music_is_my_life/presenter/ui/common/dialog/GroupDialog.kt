@@ -19,11 +19,12 @@ class GroupDialog : DialogFragment() {
     private lateinit var binding: DialogGroupBinding
     private val viewModel: GroupDialogViewModel by viewModels()
     private val dialogGroupAdapter = DialogGroupAdapter()
+    private var songDetailBottomSheetListener: SongDetailBottomSheetListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = DialogGroupBinding.inflate(inflater)
         return binding.root
@@ -37,13 +38,17 @@ class GroupDialog : DialogFragment() {
 
         viewModel.loadGroups()
     }
-    
+
     private fun initViews() {
         binding.btnCancel.setOnClickListener {
             dismiss()
         }
         binding.btnConfirm.setOnClickListener {
-            /* TODO */
+            songDetailBottomSheetListener?.setGroupInfo(
+                viewModel.groups.value?.get(dialogGroupAdapter.isSelectedItemIndex)
+                    ?: GroupUiModel.DEFAULT_GROUP
+            )
+            dismiss()
         }
         binding.rvGroups.apply {
             adapter = dialogGroupAdapter
@@ -61,5 +66,9 @@ class GroupDialog : DialogFragment() {
 
             dialogGroupAdapter.submitList(list)
         }
+    }
+
+    fun setSongDetailBottomSheetListener(songDetailBottomSheetListener: SongDetailBottomSheetListener) {
+        this.songDetailBottomSheetListener = songDetailBottomSheetListener
     }
 }

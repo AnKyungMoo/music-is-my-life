@@ -5,11 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.databinding.ItemAddSongBinding
-import com.km.music_is_my_life.presenter.ui.common.SongDetailBottomSheet
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
-import com.km.music_is_my_life.presenter.ui.search.SearchSongActivity
 
 class SearchSongAdapter(
     private val onClickItem: (SongUiModel) -> Unit
