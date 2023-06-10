@@ -16,3 +16,10 @@ internal fun GroupEntity.toDomainModel(): Group =
         name = name,
         color = color,
     )
+
+internal fun Group.toEntity(): GroupEntity {
+    return GroupEntity(
+        name = name,
+        color = color,
+    )
+}

@@ -46,7 +46,7 @@ class GroupFragment : Fragment() {
 
     private fun observeData() {
         viewModel.groups.observe(viewLifecycleOwner) {
-            val list = mutableListOf(GroupUiModel("기본", "RED"))
+            val list = mutableListOf(GroupUiModel("기본그룹", "RED"))
             list.addAll(it)
 
             groupAdapter.submitList(list)

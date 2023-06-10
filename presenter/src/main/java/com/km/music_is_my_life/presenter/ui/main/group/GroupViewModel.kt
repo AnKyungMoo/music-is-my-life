@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.km.music_is_my_life.domain.model.Group
 import com.km.music_is_my_life.domain.usecase.GetGroupsUseCase
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import com.km.music_is_my_life.presenter.ui.model.toUiModel
