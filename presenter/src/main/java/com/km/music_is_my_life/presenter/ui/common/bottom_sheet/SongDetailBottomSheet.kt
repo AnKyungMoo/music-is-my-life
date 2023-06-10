@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.km.music_is_my_life.domain.model.SongGender
 import com.km.music_is_my_life.presenter.R
@@ -17,17 +18,11 @@ import kotlin.math.absoluteValue
 
 class SongDetailBottomSheet: BottomSheetDialogFragment() {
     private lateinit var binding: SongDetailBottomSheetBinding
-
-    private var songTitle: String = ""
-    private var singer: String = ""
-    private var songNumber: String = "0"
-    private var gender: SongGender = SongGender.MAN
-    private var key: Int = 0
-    private var group: GroupUiModel = GroupUiModel.DEFAULT_GROUP
+    private val viewModel: SongDetailBottomSheetViewModel by viewModels()
 
     private val songDetailBottomSheetListener = object : SongDetailBottomSheetListener {
         override fun setGroupInfo(group: GroupUiModel) {
-            this@SongDetailBottomSheet.group = group
+            viewModel.group = group
 
             val groupColor = ContextCompat.getColor(requireContext(), group.color.colorResId)
 
@@ -49,7 +44,7 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupContents()
+        initData()
         initButtons()
         onBind()
     }
@@ -65,16 +60,12 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
             /* TODO: save */
         }
         binding.btnPlus.setOnClickListener {
-            if (key + 1 <= 6) {
-                key++
-            }
-            bindSongKeyViews(key)
+            viewModel.keyUp()
+            bindSongKeyViews(viewModel.key)
         }
         binding.btnMinus.setOnClickListener {
-            if (key - 1 >= -6) {
-                key--
-            }
-            bindSongKeyViews(key)
+            viewModel.keyDown()
+            bindSongKeyViews(viewModel.key)
         }
         binding.btnGroupSelector.setOnClickListener {
             val groupDialog = GroupDialog()
@@ -83,24 +74,26 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         }
     }
 
-    private fun setupContents() {
-        songTitle = configuration.title
-        singer = configuration.singer
-        songNumber = configuration.number
-        gender = configuration.gender
-        key = configuration.key
+    private fun initData() {
+        viewModel.initData(
+            songTitle = configuration.title,
+            singer = configuration.singer,
+            songNumber = configuration.number,
+            gender = configuration.gender,
+            key = configuration.key
+        )
     }
 
     private fun onBind() {
-        binding.tvSongTitle.text = songTitle
-        binding.tvSongSinger.text = singer
-        binding.tvSongNumber.text = songNumber
-        when (gender) {
+        binding.tvSongTitle.text = viewModel.songTitle
+        binding.tvSongSinger.text = viewModel.singer
+        binding.tvSongNumber.text = viewModel.songNumber
+        when (viewModel.gender) {
             SongGender.MAN -> binding.rbMan.isChecked = true
             SongGender.WOMAN -> binding.rbWoman.isChecked = true
         }
-        binding.tvGroupName.text = group.groupName
-        val groupColor = ContextCompat.getColor(requireContext(), group.color.colorResId)
+        binding.tvGroupName.text = viewModel.group.groupName
+        val groupColor = ContextCompat.getColor(requireContext(), viewModel.group.color.colorResId)
 
         binding.tvGroupName.setTextColor(groupColor)
         binding.ivGroupIcon.setColorFilter(groupColor)
@@ -113,16 +106,17 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         }
 
         binding.tvSongKey.text = keyText
-        if (isPositiveNumber == null) {
-            binding.ivKeyUpDownIcon.visibility = View.GONE
-        } else {
-            binding.ivKeyUpDownIcon.visibility = View.VISIBLE
-            val keyUpDownIconRes = when (isPositiveNumber) {
-                true -> R.drawable.ic_home_keyup
-                false -> R.drawable.ic_home_keydown
-            }
+        when (isPositiveNumber) {
+            null -> binding.ivKeyUpDownIcon.visibility = View.GONE
+            else -> {
+                binding.ivKeyUpDownIcon.visibility = View.VISIBLE
+                val keyUpDownIconRes = when (isPositiveNumber) {
+                    true -> R.drawable.ic_home_keyup
+                    false -> R.drawable.ic_home_keydown
+                }
 
-            binding.ivKeyUpDownIcon.setImageResource(keyUpDownIconRes)
+                binding.ivKeyUpDownIcon.setImageResource(keyUpDownIconRes)
+            }
         }
     }
 
