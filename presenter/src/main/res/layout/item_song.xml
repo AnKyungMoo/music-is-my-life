@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxEms="8"
+                android:maxEms="7"
                 android:maxLines="1"
                 android:textColor="@color/Text04"
                 android:textSize="13dp"
@@ -55,7 +55,7 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="15dp"
                 android:ellipsize="end"
-                android:maxEms="5"
+                android:maxEms="3"
                 android:maxLines="1"
                 android:textColor="@color/Text03"
                 android:textSize="13dp"
@@ -64,6 +64,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/tv_song_name"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tool:ignore="SpUsage"
                 tool:text="윤하" />
 
