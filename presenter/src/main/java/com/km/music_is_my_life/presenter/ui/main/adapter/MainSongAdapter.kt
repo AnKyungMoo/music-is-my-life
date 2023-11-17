@@ -68,6 +68,7 @@ class MainSongViewHolder(private val binding: ItemSongBinding) : RecyclerView.Vi
             else -> {
                 binding.ivKeyUpDownIcon.visibility = View.VISIBLE
                 binding.tvSongKey.visibility = View.VISIBLE
+                binding.tvOriginalKey.visibility = View.GONE
                 val keyUpDownIconRes = when (isPositiveNumber) {
                     true -> R.drawable.ic_home_keyup
                     false -> R.drawable.ic_home_keydown
