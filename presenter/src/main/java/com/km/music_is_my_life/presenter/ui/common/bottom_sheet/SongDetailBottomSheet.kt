@@ -100,6 +100,16 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
 
         binding.tvGroupName.setTextColor(groupColor)
         binding.ivGroupIcon.setColorFilter(groupColor)
+        binding.rg.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rb_man -> {
+                    viewModel.setGenderType(SongGender.MAN)
+                }
+                R.id.rb_woman -> {
+                    viewModel.setGenderType(SongGender.WOMAN)
+                }
+            }
+        }
     }
 
     private fun bindSongKeyViews(key: Int) {

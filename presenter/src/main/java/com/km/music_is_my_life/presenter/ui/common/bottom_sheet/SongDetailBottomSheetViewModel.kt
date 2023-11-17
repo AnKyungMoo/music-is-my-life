@@ -52,6 +52,10 @@ class SongDetailBottomSheetViewModel @Inject constructor(
         }
     }
 
+    fun setGenderType(songGender: SongGender) {
+        gender = songGender
+    }
+
     fun saveFavoriteSong() {
         viewModelScope.launch {
             insertFavoriteMusicUseCase(
