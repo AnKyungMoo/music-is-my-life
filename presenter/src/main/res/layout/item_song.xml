@@ -13,38 +13,128 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:textColor="#66000000"
-            android:textSize="13sp"
+            android:textColor="@color/Text03"
+            android:textSize="13dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tool:ignore="SpUsage"
             tool:text="12345" />
 
-        <TextView
-            android:id="@+id/tv_song_name"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="161dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:textColor="#1C1C1C"
-            android:textSize="13sp"
-            android:textStyle="bold"
+            android:layout_marginStart="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tool:text="사건의 지평선" />
+            app:layout_constraintEnd_toStartOf="@id/layout_key"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/tv_song_number"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_singer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:textColor="#66000000"
-            android:textSize="13sp"
-            android:textStyle="bold"
+            <TextView
+                android:id="@+id/tv_song_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+                android:textColor="@color/Text04"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:ignore="SpUsage"
+                tool:text="사건의 지평선" />
+
+            <TextView
+                android:id="@+id/tv_singer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="15dp"
+                android:ellipsize="end"
+                android:maxEms="5"
+                android:maxLines="1"
+                android:textColor="@color/Text03"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/tv_song_name"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:ignore="SpUsage"
+                tool:text="윤하" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_key"
+            android:layout_width="64dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/song_key_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_song_name"
-            app:layout_constraintTop_toTopOf="parent"
-            tool:text="윤하" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="36dp"
+                android:layout_height="18dp"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/Text10"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tool:ignore="SpUsage"
+                    tool:text="남" />
+
+                <TextView
+                    android:id="@+id/tv_song_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:textColor="@color/Text04"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_key_up_down_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tool:ignore="SpUsage"
+                    tool:text="3" />
+
+                <ImageView
+                    android:id="@+id/iv_key_up_down_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home_keyup"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_original_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="원키"
+                    android:textColor="@color/Text04"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tool:ignore="SpUsage" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
