@@ -56,6 +56,9 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         viewModel.dismissBottomSheetEvent.observe(this) {
             dismiss()
         }
+        viewModel.key.observe(this) {
+            bindSongKeyViews(it)
+        }
     }
 
     private fun bindViews() {
@@ -92,11 +95,9 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         }
         binding.btnPlus.setOnClickListener {
             viewModel.keyUp()
-            bindSongKeyViews(viewModel.key)
         }
         binding.btnMinus.setOnClickListener {
             viewModel.keyDown()
-            bindSongKeyViews(viewModel.key)
         }
         binding.btnGroupSelector.setOnClickListener {
             val groupDialog = GroupDialog()
@@ -111,7 +112,7 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
             singer = configuration.singer,
             songNumber = configuration.number,
             gender = configuration.gender,
-            key = configuration.key
+            key = configuration.key,
         )
     }
 

@@ -24,13 +24,16 @@ class SongDetailBottomSheetViewModel @Inject constructor(
         private set
     var gender: SongGender = SongGender.MAN
         private set
-    var key: Int = 0
-        private set
     var group: GroupUiModel = GroupUiModel.DEFAULT_GROUP
 
     private val _dismissBottomSheetEvent = MutableLiveData<Unit>()
     val dismissBottomSheetEvent: LiveData<Unit>
         get() = _dismissBottomSheetEvent
+
+    private val _key = MutableLiveData(0)
+    val key: LiveData<Int>
+        get() = _key
+
 
     fun initData(
         songTitle: String,
@@ -43,18 +46,22 @@ class SongDetailBottomSheetViewModel @Inject constructor(
         this.singer = singer
         this.songNumber = songNumber
         this.gender = gender
-        this.key = key
+        _key.value = key
     }
 
     fun keyUp() {
-        if (key + 1 <= MAX_KEY) {
-            key++
+        val currentKey = _key.value ?: 0
+
+        if (currentKey + 1 <= MAX_KEY) {
+            _key.value = currentKey + 1
         }
     }
 
     fun keyDown() {
-        if (key - 1 >= MIN_KEY) {
-            key--
+        val currentKey = _key.value ?: 0
+
+        if (currentKey - 1 >= MIN_KEY) {
+            _key.value = currentKey - 1
         }
     }
 
@@ -70,7 +77,7 @@ class SongDetailBottomSheetViewModel @Inject constructor(
                     title = songTitle,
                     singer = singer,
                     gender = gender,
-                    key = key,
+                    key = _key.value ?: 0,
                     groupName = group.groupName,
                 )
             )
