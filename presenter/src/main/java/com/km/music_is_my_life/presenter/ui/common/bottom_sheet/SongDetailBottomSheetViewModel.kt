@@ -1,5 +1,7 @@
 package com.km.music_is_my_life.presenter.ui.common.bottom_sheet
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.km.music_is_my_life.domain.model.Music
@@ -25,6 +27,10 @@ class SongDetailBottomSheetViewModel @Inject constructor(
     var key: Int = 0
         private set
     var group: GroupUiModel = GroupUiModel.DEFAULT_GROUP
+
+    private val _dismissBottomSheetEvent = MutableLiveData<Unit>()
+    val dismissBottomSheetEvent: LiveData<Unit>
+        get() = _dismissBottomSheetEvent
 
     fun initData(
         songTitle: String,
@@ -68,6 +74,8 @@ class SongDetailBottomSheetViewModel @Inject constructor(
                     groupName = group.groupName,
                 )
             )
+
+            _dismissBottomSheetEvent.value = Unit
         }
     }
 

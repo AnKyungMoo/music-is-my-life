@@ -48,11 +48,39 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initData()
-        initButtons()
-        onBind()
+        bindViews()
+        observeData()
     }
 
-    private fun initButtons() {
+    private fun observeData() {
+        viewModel.dismissBottomSheetEvent.observe(this) {
+            dismiss()
+        }
+    }
+
+    private fun bindViews() {
+        binding.tvSongTitle.text = viewModel.songTitle
+        binding.tvSongSinger.text = viewModel.singer
+        binding.tvSongNumber.text = viewModel.songNumber
+        when (viewModel.gender) {
+            SongGender.MAN -> binding.rbMan.isChecked = true
+            SongGender.WOMAN -> binding.rbWoman.isChecked = true
+        }
+        binding.tvGroupName.text = viewModel.group.groupName
+        val groupColor = ContextCompat.getColor(requireContext(), viewModel.group.color.colorResId)
+
+        binding.tvGroupName.setTextColor(groupColor)
+        binding.ivGroupIcon.setColorFilter(groupColor)
+        binding.rg.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rb_man -> {
+                    viewModel.setGenderType(SongGender.MAN)
+                }
+                R.id.rb_woman -> {
+                    viewModel.setGenderType(SongGender.WOMAN)
+                }
+            }
+        }
         binding.btnClose.setOnClickListener {
             dismiss()
         }
@@ -85,31 +113,6 @@ class SongDetailBottomSheet: BottomSheetDialogFragment() {
             gender = configuration.gender,
             key = configuration.key
         )
-    }
-
-    private fun onBind() {
-        binding.tvSongTitle.text = viewModel.songTitle
-        binding.tvSongSinger.text = viewModel.singer
-        binding.tvSongNumber.text = viewModel.songNumber
-        when (viewModel.gender) {
-            SongGender.MAN -> binding.rbMan.isChecked = true
-            SongGender.WOMAN -> binding.rbWoman.isChecked = true
-        }
-        binding.tvGroupName.text = viewModel.group.groupName
-        val groupColor = ContextCompat.getColor(requireContext(), viewModel.group.color.colorResId)
-
-        binding.tvGroupName.setTextColor(groupColor)
-        binding.ivGroupIcon.setColorFilter(groupColor)
-        binding.rg.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.rb_man -> {
-                    viewModel.setGenderType(SongGender.MAN)
-                }
-                R.id.rb_woman -> {
-                    viewModel.setGenderType(SongGender.WOMAN)
-                }
-            }
-        }
     }
 
     private fun bindSongKeyViews(key: Int) {
