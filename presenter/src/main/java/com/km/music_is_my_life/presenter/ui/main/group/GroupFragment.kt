@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.music_is_my_life.presenter.databinding.FragmentGroupBinding
+import com.km.music_is_my_life.presenter.ui.common.bottom_sheet.SongDetailBottomSheet
 import com.km.music_is_my_life.presenter.ui.main.MainViewModel
 import com.km.music_is_my_life.presenter.ui.main.group.adapter.GroupAdapter
 import com.km.music_is_my_life.presenter.ui.main.group.adapter.GroupItemDecoration
@@ -24,7 +25,11 @@ class GroupFragment : Fragment() {
     private lateinit var binding: FragmentGroupBinding
     private val viewModel: GroupViewModel by viewModels()
     private val activityViewModel: MainViewModel by activityViewModels()
-    private val groupAdapter = GroupAdapter()
+    private val groupAdapter = GroupAdapter {
+        SongDetailBottomSheet
+            .newInstance(configuration = it)
+            .show(parentFragmentManager, GroupFragment::class.simpleName)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

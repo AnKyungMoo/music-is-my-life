@@ -13,15 +13,18 @@ import com.km.music_is_my_life.presenter.databinding.ItemSongBinding
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 import kotlin.math.absoluteValue
 
-class MainSongAdapter :
+class MainSongAdapter(
+    private val onClickSongItem: (SongUiModel) -> Unit = {},
+) :
     ListAdapter<SongUiModel, MainSongViewHolder>(MainSongViewHolder.diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainSongViewHolder {
         return MainSongViewHolder(
-            ItemSongBinding.inflate(
+            binding = ItemSongBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false,
-            )
+            ),
+            onClickSongItem = onClickSongItem,
         )
     }
 
@@ -30,7 +33,10 @@ class MainSongAdapter :
     }
 }
 
-class MainSongViewHolder(private val binding: ItemSongBinding) : RecyclerView.ViewHolder(binding.root) {
+class MainSongViewHolder(
+    private val binding: ItemSongBinding,
+    private val onClickSongItem: (SongUiModel) -> Unit,
+) : RecyclerView.ViewHolder(binding.root) {
     fun onBind(item: SongUiModel) {
         binding.tvSongNumber.text = item.number
         binding.tvSongName.text = item.title
@@ -38,6 +44,10 @@ class MainSongViewHolder(private val binding: ItemSongBinding) : RecyclerView.Vi
 
         bindSongGenderText(item.gender)
         bindSongKeyViews(item.key)
+
+        binding.root.setOnClickListener {
+            onClickSongItem(item)
+        }
     }
 
     private fun bindSongGenderText(gender: SongGender) {

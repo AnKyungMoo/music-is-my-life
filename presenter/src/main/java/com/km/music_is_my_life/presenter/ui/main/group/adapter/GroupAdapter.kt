@@ -15,16 +15,19 @@ import com.km.music_is_my_life.presenter.ui.main.adapter.MainSongAdapter
 import com.km.music_is_my_life.presenter.ui.model.GroupUiModel
 import com.km.music_is_my_life.presenter.ui.model.SongUiModel
 
-class GroupAdapter : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.diffUtil) {
+class GroupAdapter(
+    private val onClickSongItem: (SongUiModel) -> Unit,
+) : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.diffUtil) {
     private val songs = mutableListOf<SongUiModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
         return GroupViewHolder(
-            ItemGroupBinding.inflate(
+            binding = ItemGroupBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onClickSongItem = onClickSongItem,
         )
     }
 
@@ -39,8 +42,13 @@ class GroupAdapter : ListAdapter<GroupUiModel, GroupViewHolder>(GroupViewHolder.
     }
 }
 
-class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
-    private val songAdapter = MainSongAdapter()
+class GroupViewHolder(
+    private val binding: ItemGroupBinding,
+    private val onClickSongItem: (SongUiModel) -> Unit,
+) : RecyclerView.ViewHolder(binding.root) {
+    private val songAdapter = MainSongAdapter {
+        onClickSongItem(it)
+    }
     init {
         /* TODO: 그룹 접기 아이콘 변경 */
         binding.root.setOnClickListener {
