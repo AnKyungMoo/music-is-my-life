@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="SpUsage">
+
+    <style name="title_18_bold" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="body_14_bold" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="body_14_regular" parent="">
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="body_13_bold" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="body_13_regular" parent="">
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="body_12_bold" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="body_12_regular" parent="">
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="body_11_bold" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11dp</item>
+    </style>
+
+    <style name="body_11_regular" parent="">
+        <item name="android:textSize">11dp</item>
+    </style>
+
+</resources>

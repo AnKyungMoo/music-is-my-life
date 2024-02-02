@@ -14,13 +14,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            style="@style/title_18_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="그룹 편집"
             android:textColor="@color/Text04"
-            android:textSize="18dp"
-            android:textStyle="bold"
             tools:ignore="SpUsage" />
 
         <ImageView
@@ -64,14 +63,13 @@
                 android:src="@drawable/ic_edit_makegroup" />
 
             <TextView
+                style="@style/body_13_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="9dp"
                 android:text="그룹 추가"
                 android:textColor="@color/Text01"
-                android:textSize="13dp"
-                android:textStyle="bold"
                 tools:ignore="SpUsage" />
         </LinearLayout>
     </RelativeLayout>
