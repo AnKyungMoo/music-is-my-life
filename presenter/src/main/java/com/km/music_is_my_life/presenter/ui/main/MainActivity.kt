@@ -2,17 +2,16 @@ package com.km.music_is_my_life.presenter.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.RelativeLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.ActivityMainBinding
 import com.km.music_is_my_life.presenter.ext.dp
+import com.km.music_is_my_life.presenter.ui.edit.EditSongListActivity
 import com.km.music_is_my_life.presenter.ui.main.adapter.MainTabAdapter
 import com.km.music_is_my_life.presenter.ui.search.SearchSongActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,12 +54,16 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun onClickEditButton() {
-        val view = layoutInflater.inflate(R.layout.group_popup_window, null)
+        initPopupView()
+    }
+
+    private fun initPopupView() {
+        val popupView = layoutInflater.inflate(R.layout.group_popup_window, null)
         val popupWidth = 86.dp(this)
         val popupHeight = 90.dp(this)
 
         val popupWindow = PopupWindow(
-            view,
+            popupView,
             popupWidth,
             popupHeight,
             true,
@@ -70,11 +73,18 @@ class MainActivity: AppCompatActivity() {
         binding.btnEdit.getLocationInWindow(location)
 
         popupWindow.showAtLocation(
-            view,
+            popupView,
             Gravity.END,
             18.dp(this),
             -location[1] + 19.dp(this),
         )
+
+        popupView.findViewById<RelativeLayout>(R.id.btn_edit_song)?.apply {
+            setOnClickListener {
+                val intent = Intent(this@MainActivity, EditSongListActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {

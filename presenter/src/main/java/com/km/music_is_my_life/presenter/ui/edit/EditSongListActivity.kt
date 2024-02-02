@@ -11,5 +11,6 @@ class EditSongListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityEditSongListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
