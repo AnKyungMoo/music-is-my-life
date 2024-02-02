@@ -1,4 +1,4 @@
-package com.km.music_is_my_life.presenter.ui.edit
+package com.km.music_is_my_life.presenter.ui.edit.song
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -3,6 +3,7 @@
 
     <application>
         <activity android:name=".ui.search.SearchSongActivity" />
-        <activity android:name=".ui.edit.EditSongListActivity" />
+        <activity android:name=".ui.edit.song.EditSongListActivity" />
+        <activity android:name=".ui.edit.group.EditGroupsActivity" />
     </application>
 </manifest>

@@ -11,7 +11,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.km.music_is_my_life.presenter.R
 import com.km.music_is_my_life.presenter.databinding.ActivityMainBinding
 import com.km.music_is_my_life.presenter.ext.dp
-import com.km.music_is_my_life.presenter.ui.edit.EditSongListActivity
+import com.km.music_is_my_life.presenter.ui.edit.group.EditGroupsActivity
+import com.km.music_is_my_life.presenter.ui.edit.song.EditSongListActivity
 import com.km.music_is_my_life.presenter.ui.main.adapter.MainTabAdapter
 import com.km.music_is_my_life.presenter.ui.search.SearchSongActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -82,6 +83,13 @@ class MainActivity: AppCompatActivity() {
         popupView.findViewById<RelativeLayout>(R.id.btn_edit_song)?.apply {
             setOnClickListener {
                 val intent = Intent(this@MainActivity, EditSongListActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        popupView.findViewById<RelativeLayout>(R.id.btn_edit_group)?.apply {
+            setOnClickListener {
+                val intent = Intent(this@MainActivity, EditGroupsActivity::class.java)
                 startActivity(intent)
             }
         }
